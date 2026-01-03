@@ -1,51 +1,58 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@workspace/ui/components/button"
-import { Sheet, SheetContent, SheetTrigger } from "@workspace/ui/components/sheet"
-import { Menu } from "lucide-react"
-import { codeSnippets } from "@/lib/showcase-code-snippets"
-import { getComponentsData } from "@/lib/showcase-components-data"
-import { ComponentsSidebar, categories } from "@/components/showcase/components-sidebar"
-import { CategoryFilter } from "@/components/showcase/category-filter"
-import { ComponentGrid } from "@/components/showcase/component-grid"
+import * as React from "react";
+import { Button } from "@workspace/ui/components/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@workspace/ui/components/sheet";
+import { Menu } from "lucide-react";
+import { codeSnippets } from "@/lib/showcase-code-snippets";
+import { getComponentsData } from "@/lib/showcase-data/sections-data";
+import {
+  ComponentsSidebar,
+  categories,
+} from "@/components/showcase/components-sidebar";
+import { CategoryFilter } from "@/components/showcase/category-filter";
+import { ComponentGrid } from "@/components/showcase/component-grid";
 
 export function ComponentsShowcase() {
-  const [activeCategory, setActiveCategory] = React.useState("all")
-  const [activeComponent, setActiveComponent] = React.useState<string | null>(null)
-  const [progress, setProgress] = React.useState(45)
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
-  const [isCollapsibleOpen, setIsCollapsibleOpen] = React.useState(false)
-  const componentRefs = React.useRef<Record<string, HTMLDivElement | null>>({})
+  const [activeCategory, setActiveCategory] = React.useState("all");
+  const [activeComponent, setActiveComponent] = React.useState<string | null>(
+    null,
+  );
+  const componentRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
 
-  const components = React.useMemo(
-    () => getComponentsData(progress, date, isCollapsibleOpen, setDate, setIsCollapsibleOpen),
-    [progress, date, isCollapsibleOpen],
-  )
+  const components = React.useMemo(() => getComponentsData(), []);
 
   const handleComponentSelect = (id: string) => {
-    setActiveComponent(id)
-    setActiveCategory("all")
-    componentRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
+    setActiveComponent(id);
+    setActiveCategory("all");
+    componentRefs.current[id]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const handleRef = (id: string, el: HTMLDivElement | null) => {
-    componentRefs.current[id] = el
-  }
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500)
-    return () => clearTimeout(timer)
-  }, [])
+    componentRefs.current[id] = el;
+  };
 
   const filteredComponents =
-    activeCategory === "all" ? components : components.filter((c) => c.category === activeCategory)
+    activeCategory === "all"
+      ? components
+      : components.filter((c) => c.category === activeCategory);
 
   return (
     <div className="flex gap-6">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 shrink-0 sticky top-20 h-[calc(100vh-6rem)]">
-        <ComponentsSidebar components={components} activeComponent={activeComponent} onSelect={handleComponentSelect} />
+        <ComponentsSidebar
+          components={components}
+          activeComponent={activeComponent}
+          onSelect={handleComponentSelect}
+        />
       </aside>
 
       {/* Mobile Sidebar */}
@@ -72,11 +79,19 @@ export function ComponentsShowcase() {
       {/* Main Content */}
       <div className="flex-1 space-y-8">
         {/* Category Filter */}
-        <CategoryFilter categories={categories} activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+        <CategoryFilter
+          categories={categories}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
 
         {/* Components Grid */}
-        <ComponentGrid components={filteredComponents} codeSnippets={codeSnippets} onRef={handleRef} />
+        <ComponentGrid
+          components={filteredComponents}
+          codeSnippets={codeSnippets}
+          onRef={handleRef}
+        />
       </div>
     </div>
-  )
+  );
 }
