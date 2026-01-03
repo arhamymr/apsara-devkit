@@ -124,13 +124,100 @@ Available themes: `light`, `dark`, `system`.
 
 ## Deployment
 
+### Docker Deployment (Zero Downtime)
+
+This project includes a complete Docker deployment setup for production VPS deployments.
+
+#### Architecture
+
+```
+Cloudflare DNS → VPS :80 → Web Container (:3000) [Public]
+                                ├──→ Backend (:2222) [Internal]
+                                ├──→ AI (:3333) [Internal]
+                                └──→ PostgreSQL (:5432) [Internal]
+```
+
+#### Prerequisites
+
+- Docker Engine 24+
+- Docker Compose v2
+- 2GB+ RAM available
+- 10GB+ disk space
+
+#### Quick Deploy
+
+```bash
+# 1. Clone and navigate to the project
+git clone <your-repo>
+cd apsara-devkit
+
+# 2. Create environment file
+cp .env.production .env.production
+# Edit .env.production with your values
+
+# 3. Make deploy script executable
+chmod +x scripts/deploy.sh
+
+# 4. Deploy (zero-downtime)
+./scripts/deploy.sh production
+```
+
+#### Zero-Downtime Deployment Strategy
+
+The deploy script uses a zero-downtime strategy:
+
+1. **Build Phase**: Build new Docker images while services continue running
+2. **Deploy Phase**: Recreate containers with new images (minimal downtime during restart)
+3. **Cleanup Phase**: Remove old images after successful deployment
+
+This ensures your application stays available during most of the deployment process.
+
+#### Required Environment Variables
+
+| Variable              | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| `NEXT_PUBLIC_APP_URL` | Your production domain (e.g., `https://yourdomain.com`) |
+| `DB_PASSWORD`         | PostgreSQL password                                     |
+| `BETTER_AUTH_SECRET`  | Auth encryption key (`openssl rand -base64 32`)         |
+| `DATABASE_URL`        | PostgreSQL connection string                            |
+
+See `.env.production` for the complete template.
+
+#### Manual Docker Commands
+
+```bash
+# Build all images
+docker compose build --no-cache
+
+# Start services
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Stop services
+docker compose down
+
+# Full cleanup (removes all containers, networks, and images)
+docker compose down --remove-orphans
+docker system prune -a -f
+```
+
+#### Cloudflare DNS Setup
+
+Create an A record pointing to your VPS IP:
+
+| Type | Name | Value       |
+| ---- | ---- | ----------- |
+| A    | @    | YOUR_VPS_IP |
+
 ### Build for Production
 
 ```bash
 pnpm build
 ```
 
-### Docker (Coming Soon)
+### Docker (Legacy)
 
 Docker configurations will be added for containerized deployments.
 
