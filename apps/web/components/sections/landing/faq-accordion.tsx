@@ -17,7 +17,7 @@ export function FAQAccordion({ title, description, faqs }: FAQAccordionProps) {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+            <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
             {description && <p className="text-pretty text-lg text-muted-foreground">{description}</p>}
           </div>
           <Accordion type="single" collapsible className="w-full">

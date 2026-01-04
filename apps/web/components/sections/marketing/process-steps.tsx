@@ -18,7 +18,7 @@ export function ProcessSteps({ title, description, steps }: ProcessStepsProps) {
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
           {description && <p className="text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>}
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
@@ -29,7 +29,7 @@ export function ProcessSteps({ title, description, steps }: ProcessStepsProps) {
               )}
               <Card>
                 <CardContent className="p-6 text-center relative">
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center  text-lg">
                     {idx + 1}
                   </div>
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4 mt-4">

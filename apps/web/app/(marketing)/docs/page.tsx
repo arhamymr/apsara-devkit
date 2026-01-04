@@ -30,7 +30,7 @@ export default function DocsPage() {
               <BookOpen className="mr-1 h-3 w-3" />
               Documentation
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Apsara DevKit Docs</h1>
+            <h1 className="text-4xl md:text-5xl  mb-4 text-balance">Apsara DevKit Docs</h1>
             <p className="text-lg text-muted-foreground mb-8 text-balance">
               A comprehensive guide to building modern web applications with our full-stack monorepo
             </p>
@@ -53,7 +53,7 @@ export default function DocsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2">What is Apsara DevKit?</h2>
+              <h2 className="text-3xl  mb-2">What is Apsara DevKit?</h2>
               <p className="text-muted-foreground">A production-ready full-stack monorepo template</p>
             </div>
 
@@ -171,7 +171,7 @@ export default function DocsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2">Project Structure</h2>
+              <h2 className="text-3xl  mb-2">Project Structure</h2>
               <p className="text-muted-foreground">Understanding the monorepo organization</p>
             </div>
 
@@ -231,7 +231,7 @@ export default function DocsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2">Quick Commands</h2>
+              <h2 className="text-3xl  mb-2">Quick Commands</h2>
               <p className="text-muted-foreground">Essential commands for development</p>
             </div>
 
@@ -299,7 +299,7 @@ export default function DocsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2">Key Features</h2>
+              <h2 className="text-3xl  mb-2">Key Features</h2>
               <p className="text-muted-foreground">Everything included in the DevKit</p>
             </div>
 
@@ -366,7 +366,7 @@ export default function DocsPage() {
       <section className="py-16 border-t">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
+            <h2 className="text-3xl  mb-4">Ready to Build?</h2>
             <p className="text-muted-foreground mb-8">
               Choose a documentation section to get started with your preferred stack
             </p>

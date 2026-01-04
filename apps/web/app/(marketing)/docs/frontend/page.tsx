@@ -42,7 +42,7 @@ export default function FrontendDocsPage() {
                 <Component className="mr-1 h-3 w-3" />
                 Frontend Docs
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Frontend Guide</h1>
+              <h1 className="text-4xl md:text-5xl  mb-4 text-balance">Frontend Guide</h1>
               <p className="text-lg text-muted-foreground mb-8 text-balance">
                 Everything you need to build modern web applications with Next.js, React, and our component library
               </p>
@@ -63,7 +63,7 @@ export default function FrontendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Quick Start</h2>
+                <h2 className="text-3xl  mb-2">Quick Start</h2>
                 <p className="text-muted-foreground">Get up and running in minutes</p>
               </div>
 
@@ -192,7 +192,7 @@ export default function FrontendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Project Structure</h2>
+                <h2 className="text-3xl  mb-2">Project Structure</h2>
                 <p className="text-muted-foreground">Understanding the frontend organization</p>
               </div>
 
@@ -306,7 +306,7 @@ export default function FrontendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Key Features</h2>
+                <h2 className="text-3xl  mb-2">Key Features</h2>
                 <p className="text-muted-foreground">Explore what's included in the frontend</p>
               </div>
 
@@ -419,7 +419,7 @@ export default function FrontendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">React Query Examples</h2>
+                <h2 className="text-3xl  mb-2">React Query Examples</h2>
                 <p className="text-muted-foreground">
                   Learn how to use TanStack Query for data fetching, caching, and state management
                 </p>
@@ -544,7 +544,7 @@ export default function FrontendDocsPage() {
         <section className="py-16 border-t">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
+              <h2 className="text-3xl  mb-4">Ready to Build?</h2>
               <p className="text-muted-foreground mb-8">
                 Explore the backend and AI documentation to build complete applications
               </p>

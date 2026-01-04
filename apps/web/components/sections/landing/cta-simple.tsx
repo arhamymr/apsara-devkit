@@ -18,7 +18,7 @@ export function CTASimple({
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
           <p className="text-pretty text-lg mb-8 opacity-90">{description}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button size="lg" variant="secondary" asChild>

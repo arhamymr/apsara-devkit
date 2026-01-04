@@ -24,7 +24,7 @@ export function PricingTiers({ title, description, tiers }: PricingTiersProps) {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
           {description && <p className="text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>}
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -37,7 +37,7 @@ export function PricingTiers({ title, description, tiers }: PricingTiersProps) {
               </CardHeader>
               <CardContent>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold">{tier.price}</span>
+                  <span className="text-4xl ">{tier.price}</span>
                   {tier.period && <span className="text-muted-foreground">/{tier.period}</span>}
                 </div>
                 <ul className="space-y-3">

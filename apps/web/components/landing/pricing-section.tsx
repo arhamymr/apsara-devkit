@@ -46,7 +46,7 @@ export function PricingSection() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
-            <h2 className="text-4xl font-bold">Pricing Plans</h2>
+            <h2 className="text-4xl ">Pricing Plans</h2>
             <span className="inline-flex items-center rounded-full bg-yellow-100 dark:bg-yellow-900 px-3 py-1 text-sm font-medium text-yellow-800 dark:text-yellow-200">
               Coming Soon
             </span>
@@ -73,9 +73,9 @@ export function PricingSection() {
               )}
 
               <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                <h3 className="text-2xl  mb-2">{plan.name}</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span className="text-4xl ">{plan.price}</span>
                   {plan.price !== "Custom" && <span className="text-muted-foreground">/month</span>}
                 </div>
                 <p className="text-muted-foreground">{plan.description}</p>

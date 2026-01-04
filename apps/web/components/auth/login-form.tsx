@@ -101,7 +101,7 @@ export function LoginForm({
   return (
     <div className={className}>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
+        <h1 className="text-2xl  tracking-tight">Welcome back</h1>
         <p className="text-muted-foreground mt-2">
           Enter your credentials to access your account
         </p>

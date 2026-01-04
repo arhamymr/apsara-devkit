@@ -34,7 +34,7 @@ export default function BackendDocsPage() {
                 <Server className="mr-1 h-3 w-3" />
                 Backend Docs
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Backend API Guide</h1>
+              <h1 className="text-4xl md:text-5xl  mb-4 text-balance">Backend API Guide</h1>
               <p className="text-lg text-muted-foreground mb-8 text-balance">
                 Build fast, scalable APIs with Hono - a lightweight, high-performance web framework
               </p>
@@ -55,7 +55,7 @@ export default function BackendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Getting Started</h2>
+                <h2 className="text-3xl  mb-2">Getting Started</h2>
                 <p className="text-muted-foreground">Set up and run the backend server</p>
               </div>
 
@@ -127,7 +127,7 @@ export default function BackendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">API Endpoints</h2>
+                <h2 className="text-3xl  mb-2">API Endpoints</h2>
                 <p className="text-muted-foreground">Available API routes and their usage</p>
               </div>
 
@@ -217,7 +217,7 @@ export default function BackendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Middleware</h2>
+                <h2 className="text-3xl  mb-2">Middleware</h2>
                 <p className="text-muted-foreground">Built-in middleware and custom middleware</p>
               </div>
 
@@ -262,7 +262,7 @@ export default function BackendDocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Database</h2>
+                <h2 className="text-3xl  mb-2">Database</h2>
                 <p className="text-muted-foreground">Database configuration and models</p>
               </div>
 
@@ -300,7 +300,7 @@ export default function BackendDocsPage() {
         <section className="py-16 border-t">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Need AI Capabilities?</h2>
+              <h2 className="text-3xl  mb-4">Need AI Capabilities?</h2>
               <p className="text-muted-foreground mb-8">
                 Explore the AI documentation to add intelligent features to your application
               </p>

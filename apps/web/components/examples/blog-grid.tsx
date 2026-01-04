@@ -53,7 +53,7 @@ export function BlogGrid() {
     <div className="py-12 md:py-20">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4">Blog</h1>
+          <h1 className="text-3xl  tracking-tight sm:text-4xl md:text-5xl mb-4">Blog</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Insights, tutorials, and updates from our team.
           </p>
@@ -71,7 +71,7 @@ export function BlogGrid() {
             </div>
             <div className="p-6 md:p-8 flex flex-col justify-center">
               <Badge className="w-fit mb-4">{featuredPost.category}</Badge>
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">{featuredPost.title}</h2>
+              <h2 className="text-2xl md:text-3xl  mb-3">{featuredPost.title}</h2>
               <p className="text-muted-foreground mb-6">{featuredPost.excerpt}</p>
               <div className="flex items-center gap-4">
                 <Avatar className="h-10 w-10">

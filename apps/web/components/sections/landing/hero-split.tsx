@@ -31,7 +31,7 @@ export function HeroSplit({
             <Badge variant="secondary" className="mb-4">
               {badge}
             </Badge>
-            <h1 className="text-balance text-4xl font-bold tracking-tight lg:text-5xl mb-6">{title}</h1>
+            <h1 className="text-balance text-4xl  tracking-tight lg:text-5xl mb-6">{title}</h1>
             <p className="text-pretty text-lg text-muted-foreground mb-6">{description}</p>
             {features.length > 0 && (
               <ul className="space-y-3 mb-8">

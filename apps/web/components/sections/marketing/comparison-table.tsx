@@ -27,7 +27,7 @@ export function ComparisonTable({
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
           {description && <p className="text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>}
         </div>
         <Card className="max-w-4xl mx-auto">

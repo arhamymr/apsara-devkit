@@ -22,7 +22,7 @@ export function NewsletterInline({
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
             <Mail className="h-6 w-6 text-primary" />
           </div>
-          <h2 className="text-balance text-3xl font-bold tracking-tight mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight mb-4">{title}</h2>
           <p className="text-pretty text-muted-foreground mb-8">{description}</p>
           <form className="flex flex-col sm:flex-row gap-3">
             <Input type="email" placeholder={placeholder} className="flex-1" required />

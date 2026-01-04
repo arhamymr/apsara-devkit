@@ -69,11 +69,10 @@ export function HeroSectionComponent({
                     key={index}
                     size="lg"
                     variant={button.variant || "default"}
-                    className="h-12 px-8 bg-transparent"
                     asChild
                   >
                     <Link href={button.href}>
-                      {Icon && <Icon className="mr-2 h-4 w-4" />}
+                      {Icon && <Icon className="h-4 w-4" />}
                       {button.label}
                       {!Icon && index === 0 && <ArrowRight className="ml-2 h-4 w-4" />}
                     </Link>
@@ -87,7 +86,7 @@ export function HeroSectionComponent({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 pt-12 border-t mt-12 w-full max-w-3xl">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold">{stat.value}</div>
+                  <div className="text-2xl md:text-3xl ">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}

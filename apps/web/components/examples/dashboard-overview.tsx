@@ -32,7 +32,7 @@ export function DashboardOverview() {
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">Dashboard Overview</h1>
+        <h1 className="text-2xl  tracking-tight md:text-3xl">Dashboard Overview</h1>
         <p className="text-muted-foreground">Monitor your project metrics and team activity</p>
       </div>
 
@@ -45,7 +45,7 @@ export function DashboardOverview() {
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
+              <div className="text-2xl ">{stat.value}</div>
               <div className="flex items-center text-xs">
                 {stat.trend === "up" ? (
                   <ArrowUp className="mr-1 h-3 w-3 text-accent" />

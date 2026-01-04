@@ -31,7 +31,7 @@ export function AboutSection() {
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <Badge className="mb-4">About Us</Badge>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-balance">
+          <h1 className="text-3xl  tracking-tight sm:text-4xl md:text-5xl text-balance">
             Building the Future of Web Development
           </h1>
           <p className="text-lg text-muted-foreground text-pretty">
@@ -51,7 +51,7 @@ export function AboutSection() {
           {stats.map((stat) => (
             <Card key={stat.label} className="text-center border-accent/20 hover:border-accent/50 transition-colors">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold mb-1">{stat.value}</div>
+                <div className="text-3xl  mb-1">{stat.value}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
               </CardContent>
             </Card>
@@ -61,7 +61,7 @@ export function AboutSection() {
         {/* Core Values */}
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold mb-3">Our Core Values</h2>
+            <h2 className="text-2xl  mb-3">Our Core Values</h2>
             <p className="text-muted-foreground">The principles that guide everything we do</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -83,14 +83,14 @@ export function AboutSection() {
         {/* Journey Timeline */}
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold mb-3">Our Journey</h2>
+            <h2 className="text-2xl  mb-3">Our Journey</h2>
             <p className="text-muted-foreground">Milestones that shaped our story</p>
           </div>
           <div className="space-y-6">
             {timeline.map((item, index) => (
               <div key={item.year} className="flex gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground font-bold text-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-accent-foreground  text-sm">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
                   {index < timeline.length - 1 && <div className="h-full w-px bg-border mt-2" />}
@@ -111,7 +111,7 @@ export function AboutSection() {
 
         {/* CTA Section */}
         <div className="text-center max-w-2xl mx-auto space-y-6">
-          <h2 className="text-2xl font-bold">Want to Learn More?</h2>
+          <h2 className="text-2xl ">Want to Learn More?</h2>
           <p className="text-muted-foreground">
             Join thousands of developers who trust our platform to build amazing products.
           </p>

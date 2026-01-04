@@ -26,7 +26,7 @@ export function HeroCentered({
           <Badge variant="secondary" className="mb-4">
             {badge}
           </Badge>
-          <h1 className="text-balance text-4xl font-bold tracking-tight lg:text-6xl mb-6">{title}</h1>
+          <h1 className="text-balance text-4xl  tracking-tight lg:text-6xl mb-6">{title}</h1>
           <p className="text-pretty text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{description}</p>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
             <Button size="lg" asChild>
@@ -46,7 +46,7 @@ export function HeroCentered({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t pt-8">
               {stats.map((stat, idx) => (
                 <div key={idx}>
-                  <div className="text-3xl font-bold">{stat.value}</div>
+                  <div className="text-3xl ">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}

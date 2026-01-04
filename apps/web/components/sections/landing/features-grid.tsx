@@ -25,7 +25,7 @@ export function FeaturesGrid({ title, description, features, columns = 3 }: Feat
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-balance text-3xl font-bold tracking-tight lg:text-4xl mb-4">{title}</h2>
+          <h2 className="text-balance text-3xl  tracking-tight lg:text-4xl mb-4">{title}</h2>
           {description && <p className="text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>}
         </div>
         <div className={`grid gap-6 ${gridCols[columns]} max-w-6xl mx-auto`}>

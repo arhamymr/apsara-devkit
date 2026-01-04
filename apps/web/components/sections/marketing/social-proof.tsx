@@ -25,28 +25,28 @@ export function SocialProof({
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-3">
               <Users className="h-6 w-6 text-primary" />
             </div>
-            <div className="text-3xl font-bold">{stats.users}</div>
+            <div className="text-3xl ">{stats.users}</div>
             <div className="text-sm text-muted-foreground">Active Users</div>
           </div>
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-3">
               <Star className="h-6 w-6 text-primary" />
             </div>
-            <div className="text-3xl font-bold">{stats.rating}</div>
+            <div className="text-3xl ">{stats.rating}</div>
             <div className="text-sm text-muted-foreground">Average Rating</div>
           </div>
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-3">
               <TrendingUp className="h-6 w-6 text-primary" />
             </div>
-            <div className="text-3xl font-bold">{stats.reviews}</div>
+            <div className="text-3xl ">{stats.reviews}</div>
             <div className="text-sm text-muted-foreground">Reviews</div>
           </div>
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-3">
               <Award className="h-6 w-6 text-primary" />
             </div>
-            <div className="text-3xl font-bold">{stats.awards}</div>
+            <div className="text-3xl ">{stats.awards}</div>
             <div className="text-sm text-muted-foreground">Awards Won</div>
           </div>
         </div>

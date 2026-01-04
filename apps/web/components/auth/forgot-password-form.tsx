@@ -43,7 +43,7 @@ export function ForgotPasswordForm({ onSubmit, className }: ForgotPasswordFormPr
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent mb-4">
             <CheckCircle className="h-6 w-6" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Check your email</h1>
+          <h1 className="text-2xl  tracking-tight">Check your email</h1>
           <p className="text-muted-foreground mt-2">
             We&apos;ve sent a password reset link to your email address. Please check your inbox.
           </p>
@@ -62,7 +62,7 @@ export function ForgotPasswordForm({ onSubmit, className }: ForgotPasswordFormPr
   return (
     <div className={className}>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">Forgot password?</h1>
+        <h1 className="text-2xl  tracking-tight">Forgot password?</h1>
         <p className="text-muted-foreground mt-2">No worries, we&apos;ll send you reset instructions to your email.</p>
       </div>
 

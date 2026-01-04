@@ -60,7 +60,7 @@ export function RegisterForm({
   return (
     <div className={className}>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">Create an account</h1>
+        <h1 className="text-2xl  tracking-tight">Create an account</h1>
         <p className="text-muted-foreground mt-2">
           Get started with your free account today
         </p>

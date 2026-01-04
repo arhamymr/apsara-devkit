@@ -40,7 +40,7 @@ export function ContactForm({
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div>
-            <h2 className="text-balance text-3xl font-bold tracking-tight mb-4">{title}</h2>
+            <h2 className="text-balance text-3xl  tracking-tight mb-4">{title}</h2>
             <p className="text-pretty text-muted-foreground mb-8">{description}</p>
             {contactInfo && (
               <div className="space-y-4">

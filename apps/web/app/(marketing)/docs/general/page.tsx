@@ -42,7 +42,7 @@ export default function DocsPage() {
                 <BookOpen className="mr-1 h-3 w-3" />
                 Documentation
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Get Started with UIKit</h1>
+              <h1 className="text-4xl md:text-5xl  mb-4 text-balance">Get Started with UIKit</h1>
               <p className="text-lg text-muted-foreground mb-8 text-balance">
                 Everything you need to build modern web applications with our comprehensive component library and
                 templates
@@ -64,7 +64,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Quick Start</h2>
+                <h2 className="text-3xl  mb-2">Quick Start</h2>
                 <p className="text-muted-foreground">Get up and running in minutes</p>
               </div>
 
@@ -193,7 +193,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Project Structure</h2>
+                <h2 className="text-3xl  mb-2">Project Structure</h2>
                 <p className="text-muted-foreground">Understanding the template organization</p>
               </div>
 
@@ -307,7 +307,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Key Features</h2>
+                <h2 className="text-3xl  mb-2">Key Features</h2>
                 <p className="text-muted-foreground">Explore what's included in the template</p>
               </div>
 
@@ -420,7 +420,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">React Query Examples</h2>
+                <h2 className="text-3xl  mb-2">React Query Examples</h2>
                 <p className="text-muted-foreground">
                   Learn how to use TanStack Query for data fetching, caching, and state management
                 </p>
@@ -553,7 +553,7 @@ export default function DocsPage() {
                 <Badge className="mb-2" variant="secondary">
                   New
                 </Badge>
-                <h2 className="text-3xl font-bold mb-2">Authentication with Better Auth</h2>
+                <h2 className="text-3xl  mb-2">Authentication with Better Auth</h2>
                 <p className="text-muted-foreground">
                   Complete authentication system with email/password login, session management, and protected routes
                 </p>
@@ -818,7 +818,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Best Practices</h2>
+                <h2 className="text-3xl  mb-2">Best Practices</h2>
                 <p className="text-muted-foreground">Tips for working with the template</p>
               </div>
 
@@ -885,7 +885,7 @@ export default function DocsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-2">Deployment</h2>
+                <h2 className="text-3xl  mb-2">Deployment</h2>
                 <p className="text-muted-foreground">Deploy your application to production</p>
               </div>
 
@@ -897,7 +897,7 @@ export default function DocsPage() {
                 <CardContent className="space-y-4">
                   <ol className="space-y-3 text-sm">
                     <li className="flex items-start gap-2">
-                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs ">
                         1
                       </span>
                       <div>
@@ -906,7 +906,7 @@ export default function DocsPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs ">
                         2
                       </span>
                       <div>
@@ -915,7 +915,7 @@ export default function DocsPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                      <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs ">
                         3
                       </span>
                       <div>
@@ -947,7 +947,7 @@ export default function DocsPage() {
         <section className="py-16 border-t">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
+              <h2 className="text-3xl  mb-4">Ready to Build?</h2>
               <p className="text-muted-foreground mb-8">
                 Start creating amazing applications with our comprehensive template
               </p>

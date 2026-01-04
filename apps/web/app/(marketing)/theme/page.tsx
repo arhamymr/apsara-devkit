@@ -672,7 +672,7 @@ export default function ThemePage() {
           <Sparkles className="mr-1 h-3 w-3" />
           Theme Customizer
         </Badge>
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Customize Your Theme</h1>
+        <h1 className="text-4xl  tracking-tight mb-4">Customize Your Theme</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           Choose from pre-made palettes or customize colors, fonts, and styling. Changes apply to the entire website in
           real-time and respect your light/dark mode preference.

@@ -88,7 +88,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-3xl  tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">Welcome back! Here&apos;s what&apos;s happening with your projects.</p>
         </div>
         <Button>
@@ -105,7 +105,7 @@ export default function DashboardPage() {
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
+              <div className="text-2xl ">{stat.value}</div>
               <p className="text-xs text-muted-foreground flex items-center mt-1">
                 <ArrowUpRight className="h-3 w-3 mr-1 text-emerald-500" />
                 <span className="text-emerald-500 font-medium">{stat.change}</span>
