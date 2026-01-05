@@ -21,6 +21,10 @@ log_info "Running pre-flight checks..."
 
 command -v docker >/dev/null 2|| { log_error "Docker not found"; exit 1; }
 command -v docker compose >/dev/null 2|| { log_error "Docker Compose not found"; exit 1; }
+command -v turbo >/dev/null 2|| {
+    log_warn "Turbo not found, installing globally..."
+    npm install -g turbo
+}
 
 if [ ! -f ".env" ]; then
     if [ -f ".env.example" ]; then
@@ -47,7 +51,7 @@ log_info "Pre-flight checks passed"
 log_step "Stopping existing containers..."
 docker compose down --remove-orphans 2>/dev/null || true
 
-log_step "Building Docker images..."
+log_step "Building Docker images (using turbo prune for caching)..."
 docker compose build --no-cache
 
 log_step "Starting services..."
