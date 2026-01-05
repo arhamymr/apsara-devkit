@@ -3,6 +3,7 @@ FROM node:22-alpine AS base
 FROM base AS prepare
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@10.4.1 --activate
+RUN npm install -g turbo
 COPY . .
 RUN turbo prune web --docker
 
