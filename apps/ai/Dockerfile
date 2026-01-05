@@ -10,7 +10,7 @@ RUN turbo prune ai --docker
 FROM base AS deps
 WORKDIR /app
 COPY --from=prepare /app/out/json/ .
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 FROM base AS builder
 WORKDIR /app
