@@ -1,11 +1,15 @@
-FROM oven/bun:1-alpine
+FROM oven/bun:1-alpine AS runtime
+
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+COPY --from=shared-deps /app/node_modules ./node_modules
+COPY --from=shared-deps /app/apps/backend ./apps/backend
+COPY --from=shared-deps /app/packages ./packages
+COPY --from=shared-deps /app/pnpm-lock.yaml ./
+COPY --from=shared-deps /app/pnpm-workspace.yaml ./
 
-RUN bun install -g pnpm@10.4.1 && pnpm install --frozen-lockfile
-
-COPY . .
+WORKDIR /app/apps/backend
 
 EXPOSE 2222
+
 CMD ["bun", "run", "src/index.ts"]

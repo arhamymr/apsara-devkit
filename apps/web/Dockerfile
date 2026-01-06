@@ -3,18 +3,14 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/web/package.json apps/web/package.json
-COPY packages/ui/package.json packages/ui/package.json
+COPY --from=shared-deps /usr/local/bin/pnpm /usr/local/bin/
 
-RUN corepack enable && corepack prepare pnpm@10.4.1 --activate && \
-    pnpm install --frozen-lockfile
-
+COPY --from=shared-deps /app/node_modules ./node_modules
 COPY . .
 
 WORKDIR /app/apps/web
 
-RUN pnpm install --frozen-lockfile && pnpm build
+RUN pnpm build
 
 # Runner stage - only contains build artifacts
 FROM node:22-alpine AS runner

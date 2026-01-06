@@ -44,11 +44,11 @@ done
 
 log_info "Pre-flight checks passed"
 
-log_step "Running cleanup to free ports..."
-./scripts/cleanup.sh
+log_step "Enabling Docker BuildKit for optimized multi-stage builds..."
+export DOCKER_BUILDKIT=1
 
 log_step "Building Docker images..."
-docker compose build --no-cache
+DOCKER_BUILDKIT=1 docker compose build --no-cache
 
 log_step "Starting services..."
 docker compose up -d
