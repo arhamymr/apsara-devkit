@@ -1,41 +1,36 @@
-# Builder stage - installs deps and builds the app
-FROM node:22-alpine AS builder
+ARG NODE_VERSION=24.11.1
+FROM node:${NODE_VERSION}-slim AS base
 
 WORKDIR /app
 
-RUN corepack enable && \
-    corepack prepare pnpm@9 --activate
+#----
+FROM base AS prepare
+RUN pnpm install -g turbo@latest
+COPY . .
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/backend/package.json apps/backend/package.json
-COPY apps/ai/package.json apps/ai/package.json
-COPY apps/web/package.json apps/web/package.json
-COPY packages packages
+RUN turbo prune web --docker
 
+
+FROM base AS builder 
+
+COPY --from=prepare /app/out/json/ .
 RUN pnpm install --frozen-lockfile
 
-COPY apps apps
+# build the project 
+COPY --from=prepare /app/out/full/ .
+RUN pnpm turbo build --filter=web
 
-WORKDIR /app/apps/web
 
-RUN pnpm build
-
-# Runner stage - only contains build artifacts
-FROM node:22-alpine AS runner
-
-WORKDIR /app
-
-ENV NODE_ENV=production
-
-COPY --from=builder /app/apps/web/.next/standalone ./.next/standalone
-COPY --from=builder /app/apps/web/.next/static ./.next/static
-COPY --from=builder /app/apps/web/public ./public
-
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
-
+FROM node:${NODE_VERSION}-alpine AS runner
+# Don't run production as root for security reasons
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-EXPOSE 3000
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 
-CMD ["node", ".next/standalone/apps/web/server.js"]
+
+EXPOSE 3000
+CMD node apps/web/server.js
