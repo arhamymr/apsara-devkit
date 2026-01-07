@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$PROJECT_DIR"
-
 echo "🚀 Deploying Apsara Devkit"
 
 RED='\033[0;31m'
@@ -17,43 +14,21 @@ log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 log_step() { echo -e "${BLUE}[STEP]${NC} $1"; }
 
-log_info "Running pre-flight checks..."
-
 command -v docker >/dev/null 2|| { log_error "Docker not found"; exit 1; }
 command -v docker compose >/dev/null 2|| { log_error "Docker Compose not found"; exit 1; }
 
-if [ ! -f ".env" ]; then
-    if [ -f ".env.example" ]; then
-        log_warn "No .env file found, copying from .env.example"
-        cp .env.example .env
-        log_warn "Please edit .env with your values!"
-        exit 1
-    else
-        log_error "No .env file found"
-        exit 1
-    fi
-fi
-
-REQUIRED_VARS=("DATABASE_URL" "BETTER_AUTH_SECRET" "NEXT_PUBLIC_APP_URL")
-for var in "${REQUIRED_VARS[@]}"; do
-    if ! grep -q "^${var}=" .env 2>/dev/null; then
-        log_error "Required variable $var not set in .env"
-        exit 1
-    fi
-done
-
 log_info "Pre-flight checks passed"
 
-log_step "Enabling Docker BuildKit for optimized multi-stage builds..."
-export DOCKER_BUILDKIT=1
+log_step "Running cleanup..."
+./scripts/cleanup.sh
 
 log_step "Building Docker images..."
-DOCKER_BUILDKIT=1 docker compose build --no-cache
+docker compose build --no-cache
 
 log_step "Starting services..."
 docker compose up -d
 
-log_info "Waiting for services to be healthy..."
+log_info "Waiting for services..."
 sleep 15
 
 log_step "Running health checks..."

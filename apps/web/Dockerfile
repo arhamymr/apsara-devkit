@@ -3,10 +3,18 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-COPY --from=shared-deps /usr/local/bin/pnpm /usr/local/bin/
+RUN corepack enable && \
+    corepack prepare pnpm@9 --activate
 
-COPY --from=shared-deps /app/node_modules ./node_modules
-COPY . .
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/backend/package.json apps/backend/package.json
+COPY apps/ai/package.json apps/ai/package.json
+COPY apps/web/package.json apps/web/package.json
+COPY packages packages
+
+RUN pnpm install --frozen-lockfile
+
+COPY apps apps
 
 WORKDIR /app/apps/web
 
