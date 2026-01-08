@@ -7,18 +7,19 @@
     "seed": "bun scripts/seed.ts"
   },
   "dependencies": {
-    "better-auth": "1.2.9",
-    "drizzle-kit": "^0.30.4",
-    "drizzle-orm": "^0.38.2",
+    "better-auth": "1.4.10",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.41.0",
     "hono": "^4.11.3",
-    "postgres": "^3.4.7"
+    "postgres": "^3.4.8",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@types/node": "^22.19.3",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "@types/node": "^22.0.0",
-    "tsx": "^4.19.2",
-    "tsc-alias": "^1.8.10",
-    "typescript": "^5.0.0"
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

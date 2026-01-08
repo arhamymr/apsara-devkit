@@ -10,14 +10,15 @@ COPY . .
 RUN pnpm dlx turbo prune web --docker
 
 
+
 FROM base AS builder 
 WORKDIR /app
 COPY --from=prepare /app/out/json/ .
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # build the project 
 COPY --from=prepare /app/out/full/ .
-RUN pnpm turbo build --filter=web
+RUN pnpm turbo build
 
 
 FROM node:${NODE_VERSION}-alpine AS runner
