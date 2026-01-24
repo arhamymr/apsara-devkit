@@ -8,12 +8,7 @@ import { Button } from "@workspace/ui/components/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Github } from "lucide-react";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Components", href: "/components" },
-  { name: "Theme", href: "/theme" },
-  { name: "Docs", href: "/docs" },
-];
+const navItems = [{ name: "Docs", href: "/docs" }];
 
 export function DesktopNav() {
   const pathname = usePathname();
@@ -43,7 +38,6 @@ export function DesktopNav() {
       </nav>
 
       <div className="hidden md:flex items-center gap-2">
-        <ThemeToggle />
         <Button variant="ghost" size="sm" asChild>
           <Link href="/login">Log in (demo)</Link>
         </Button>

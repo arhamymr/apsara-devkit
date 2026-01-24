@@ -12,12 +12,7 @@ import {
 } from "@workspace/ui/components/sheet";
 import { Menu, X, Github } from "lucide-react";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Components", href: "/components" },
-  { name: "Theme", href: "/theme" },
-  { name: "Docs", href: "/docs" },
-];
+const navItems = [{ name: "Docs", href: "/docs" }];
 
 export function MobileNav() {
   const pathname = usePathname();
