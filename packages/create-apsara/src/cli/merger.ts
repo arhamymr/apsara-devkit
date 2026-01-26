@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const TEMPLATES_DIR = path.join(__dirname, "..", "templates");
+const TEMPLATES_DIR = path.join(__dirname, "..", "..", "templates");
 
 interface PackageJson {
   name?: string;
@@ -68,19 +68,9 @@ export async function mergeTurboJson(
 ): Promise<void> {
   const turboJsonPath = path.join(targetPath, "turbo.json");
 
-  const tasks: Record<string, Record<string, unknown>> = {};
-
-  for (const app of apps) {
-    tasks[app] = {
-      dependsOn: [],
-      inputs: ["**"],
-      outputMode: "hash",
-    };
-  }
-
   const turboConfig = {
     $schema: "https://turbo.build/schema.json",
-    pipeline: {
+    tasks: {
       build: {
         dependsOn: ["^build"],
         outputs: [],
@@ -92,7 +82,6 @@ export async function mergeTurboJson(
       lint: {},
       typecheck: {},
     },
-    tasks,
   };
 
   await fs.writeJSON(turboJsonPath, turboConfig, { spaces: 2 });

@@ -23,7 +23,7 @@
     },
     "backend": {
       "dependencies": ["better-auth", "drizzle-orm", "@libsql/client"],
-      "devDependencies": ["@types/better-auth"],
+      "devDependencies": [],
       "envVars": {
         "required": ["BETTER_AUTH_SECRET", "DATABASE_URL"],
         "optional": ["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"]

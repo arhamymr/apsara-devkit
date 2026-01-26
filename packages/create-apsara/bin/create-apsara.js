@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { generate } from "./cli/generate.js";
-import { init } from "./cli/init.js";
+import { generate } from "../dist/cli/generate.js";
+import { init } from "../dist/cli/init.js";
 
 const program = new Command();
 

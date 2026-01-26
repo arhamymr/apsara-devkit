@@ -3,11 +3,28 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CORE_DIR = path.join(__dirname, "..", "core");
-const FEATURES_DIR = path.join(__dirname, "..", "features");
+const TEMPLATES_DIR = path.join(__dirname, "..", "..", "templates");
+const CORE_DIR = path.join(__dirname, "..", "..", "core");
+const FEATURES_DIR = path.join(__dirname, "..", "..", "features");
 
 export async function copyCore(targetDir: string): Promise<void> {
-  await fs.copy(CORE_DIR, targetDir);
+  const uiDir = path.join(CORE_DIR, "packages", "ui");
+  const targetUiDir = path.join(targetDir, "packages", "ui");
+
+  await fs.ensureDir(targetUiDir);
+  await fs.copy(uiDir, targetUiDir, {
+    filter: (src) => {
+      const basename = path.basename(src);
+      if (basename === "node_modules") return false;
+      if (basename === "dist") return false;
+      if (basename === ".git") return false;
+      if (src.endsWith(".ts") || src.endsWith(".tsx")) return true;
+      if (fs.statSync(src).isDirectory()) {
+        return true;
+      }
+      return false;
+    },
+  });
 }
 
 export async function copyFeature(
@@ -51,10 +68,22 @@ export async function copyApp(
   app: "web" | "backend" | "ai",
   targetDir: string,
 ): Promise<void> {
-  const appTemplateDir = path.join(CORE_DIR, "apps", app);
+  const appTemplateDir = path.join(TEMPLATES_DIR, app);
+  const targetAppDir = path.join(targetDir, "apps", app);
+
+  await fs.ensureDir(targetAppDir);
 
   if (await fs.pathExists(appTemplateDir)) {
-    await fs.copy(appTemplateDir, path.join(targetDir, "apps", app));
+    await fs.copy(appTemplateDir, targetAppDir, {
+      filter: (src) => {
+        const basename = path.basename(src);
+        if (basename === "node_modules") return false;
+        if (basename === "dist") return false;
+        if (basename === ".git") return false;
+        if (basename === "package.json") return false;
+        return true;
+      },
+    });
   }
 }
 

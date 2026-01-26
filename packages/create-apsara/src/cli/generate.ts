@@ -1,21 +1,12 @@
 import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
-import {
-  bgCyan,
-  black,
-  blue,
-  bold,
-  cyan,
-  green,
-  red,
-  yellow,
-} from "picocolors";
+import picocolors from "picocolors";
+const { bgCyan, black, blue, bold, cyan, green, red, yellow } = picocolors;
 import { install } from "./installer.js";
 import { gitInit } from "./git.js";
 import { copyCore, copyFeature, copySharedFeature, copyApp } from "./copier.js";
 import {
-  mergePackageJson,
   mergeTurboJson,
   mergeEnvExample,
   createEnvProduction,
@@ -26,9 +17,9 @@ import {
   collectDependencies,
   collectEnvVars,
 } from "./resolver.js";
-import type { ProjectConfig } from "./types.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const TEMPLATES_DIR = path.join(__dirname, "..", "templates");
 
 interface GenerateOptions {
   name: string;
@@ -51,10 +42,6 @@ async function logInfo(message: string): Promise<void> {
   console.log(`\n${blue(" INFO ")} ${message}`);
 }
 
-async function logWarning(message: string): Promise<void> {
-  console.log(`\n${yellow(" WARN ")} ${message}`);
-}
-
 async function printBanner(): Promise<void> {
   console.log(`
 ${bold(blue("╔══════════════════════════════════════════════════════════╗"))}
@@ -62,6 +49,165 @@ ${bold(blue("║"))}  ${bold(cyan("Apsara DevKit"))} - Modular Project Generator
 ${bold(blue("║"))}  ${cyan("Create customizable web applications with ease")}   ${bold(blue("║"))}
 ${bold(blue("╚══════════════════════════════════════════════════════════╝"))}
   `);
+}
+
+function getWebPackageJson(
+  dependencies: string[],
+  devDependencies: string[],
+): object {
+  return {
+    name: "web",
+    version: "0.1.0",
+    private: true,
+    scripts: {
+      build: "next build",
+      dev: "next dev -p 1111",
+      lint: "next lint",
+      start: "next start",
+      typecheck: "tsc --noEmit",
+    },
+    dependencies: {
+      "@workspace/ui": "file:../../packages/ui",
+      "@hookform/resolvers": "^3.10.0",
+      "@radix-ui/react-accordion": "^1.2.2",
+      "@radix-ui/react-alert-dialog": "^1.1.4",
+      "@radix-ui/react-aspect-ratio": "^1.1.1",
+      "@radix-ui/react-avatar": "^1.1.2",
+      "@radix-ui/react-checkbox": "^1.1.3",
+      "@radix-ui/react-collapsible": "^1.1.2",
+      "@radix-ui/react-context-menu": "^2.2.4",
+      "@radix-ui/react-dialog": "^1.1.4",
+      "@radix-ui/react-dropdown-menu": "^2.1.4",
+      "@radix-ui/react-hover-card": "^1.1.4",
+      "@radix-ui/react-label": "^2.1.1",
+      "@radix-ui/react-menubar": "^1.1.4",
+      "@radix-ui/react-navigation-menu": "^1.2.3",
+      "@radix-ui/react-popover": "^1.1.4",
+      "@radix-ui/react-progress": "^1.1.1",
+      "@radix-ui/react-radio-group": "^1.2.2",
+      "@radix-ui/react-scroll-area": "^1.2.2",
+      "@radix-ui/react-select": "^2.1.4",
+      "@radix-ui/react-separator": "^1.1.1",
+      "@radix-ui/react-slider": "^1.2.2",
+      "@radix-ui/react-slot": "^1.1.1",
+      "@radix-ui/react-switch": "^1.1.2",
+      "@radix-ui/react-tabs": "^1.1.2",
+      "@radix-ui/react-toast": "^1.2.4",
+      "@radix-ui/react-toggle": "^1.1.1",
+      "@radix-ui/react-toggle-group": "^1.1.1",
+      "@radix-ui/react-tooltip": "^1.1.6",
+      "@tanstack/react-query": "^5.90.14",
+      "@tanstack/react-query-devtools": "^5.91.2",
+      "@vercel/analytics": "^1.3.1",
+      autoprefixer: "^10.4.20",
+      "better-auth": "^1.4.9",
+      "better-call": "^1.1.7",
+      "class-variance-authority": "^0.7.1",
+      clsx: "^2.1.1",
+      cmdk: "^1.0.4",
+      "date-fns": "^4.1.0",
+      "embla-carousel-react": "^8.5.1",
+      "input-otp": "^1.4.1",
+      "lucide-react": "^0.454.0",
+      next: "^16.0.10",
+      "next-themes": "^0.4.6",
+      react: "^19.2.0",
+      "react-day-picker": "^9.8.0",
+      "react-dom": "^19.2.0",
+      "react-hook-form": "^7.60.0",
+      "react-resizable-panels": "^2.1.7",
+      "react-syntax-highlighter": "^16.1.0",
+      recharts: "^2.15.4",
+      sonner: "^1.7.4",
+      "tailwind-merge": "^3.3.1",
+      "tailwindcss-animate": "^1.0.7",
+      vaul: "^1.1.2",
+      zod: "^4.0.0",
+      ...Object.fromEntries(dependencies.map((d) => [d, "latest"])),
+    },
+    devDependencies: {
+      "@tailwindcss/postcss": "^4.1.9",
+      "@types/node": "^22",
+      "@types/react": "^19",
+      "@types/react-dom": "^19",
+      postcss: "^8.5",
+      tailwindcss: "^4.1.9",
+      "tw-animate-css": "^1.3.3",
+      typescript: "^5",
+      ...Object.fromEntries(devDependencies.map((d) => [d, "latest"])),
+    },
+  };
+}
+
+function getBackendPackageJson(
+  dependencies: string[],
+  devDependencies: string[],
+): object {
+  return {
+    name: "backend",
+    version: "0.1.0",
+    private: true,
+    scripts: {
+      dev: "bun run src/index.ts",
+      build: "tsc",
+      start: "bun run src/index.ts",
+      lint: "eslint . --ext .ts",
+    },
+    dependencies: {
+      hono: "^4.0.0",
+      "@libsql/client": "^0.6.0",
+      drizzle: "^1.0.0",
+      "drizzle-orm": "^1.0.0",
+      zod: "^4.0.0",
+      "better-auth": "^1.4.9",
+      ...Object.fromEntries(dependencies.map((d) => [d, "latest"])),
+    },
+    devDependencies: {
+      "bun-types": "^1.0.0",
+      typescript: "^5",
+      "drizzle-kit": "^0.20.0",
+      "@types/node": "^22",
+      ...Object.fromEntries(devDependencies.map((d) => [d, "latest"])),
+    },
+  };
+}
+
+function getUiPackageJson(): object {
+  return {
+    name: "@apsara/ui",
+    version: "0.1.0",
+    private: false,
+    main: "src/index.ts",
+    types: "src/index.ts",
+    exports: {
+      ".": {
+        import: "./src/index.ts",
+        require: "./src/index.ts",
+      },
+      "./styles/globals.css": "./src/styles/globals.css",
+    },
+    scripts: {
+      build: "echo 'UI built'",
+      lint: "eslint . --ext .ts,.tsx",
+    },
+    dependencies: {
+      react: "^19.2.0",
+      "react-dom": "^19.2.0",
+      "@radix-ui/react-slot": "^1.1.1",
+      "class-variance-authority": "^0.7.1",
+      clsx: "^2.1.1",
+      "tailwind-merge": "^3.3.1",
+    },
+    devDependencies: {
+      "@types/node": "^22",
+      "@types/react": "^19",
+      "@types/react-dom": "^19",
+      typescript: "^5",
+    },
+    publishConfig: {
+      access: "public",
+    },
+  };
 }
 
 export async function generate(options: GenerateOptions): Promise<void> {
@@ -112,7 +258,6 @@ export async function generate(options: GenerateOptions): Promise<void> {
   await fs.ensureDir(targetDir);
   await fs.ensureDir(path.join(targetDir, "apps"));
   await fs.ensureDir(path.join(targetDir, "packages"));
-  await fs.ensureDir(path.join(targetDir, "packages", "shared", "types"));
 
   await logStep("Copying core files...");
   await copyCore(targetDir);
@@ -122,58 +267,42 @@ export async function generate(options: GenerateOptions): Promise<void> {
     await copyApp(app as "web" | "backend" | "ai", targetDir);
   }
 
-  await logStep("Copying feature files...");
+  await logStep("Writing configuration files...");
 
-  const webFeatures = features.filter((f) => {
-    const manifest = allManifests.find((m) => m.id === f);
-    return manifest?.apps.includes("web");
-  });
-
-  const backendFeatures = features.filter((f) => {
-    const manifest = allManifests.find((m) => m.id === f);
-    return manifest?.apps.includes("backend");
-  });
-
-  const aiFeatures = features.filter((f) => {
-    const manifest = allManifests.find((m) => m.id === f);
-    return manifest?.apps.includes("ai");
-  });
-
-  for (const feature of webFeatures) {
-    await copyFeature(feature, targetDir, "web");
-    await copySharedFeature(feature, targetDir);
-  }
-
-  for (const feature of backendFeatures) {
-    await copyFeature(feature, targetDir, "backend");
-  }
-
-  for (const feature of aiFeatures) {
-    await copyFeature(feature, targetDir, "ai");
-  }
-
-  await logStep("Merging configuration files...");
-
-  const appDependencies: Record<string, string[]> = {
-    web: dependencies.web,
-    backend: dependencies.backend,
-    ai: dependencies.ai,
-  };
-
-  const appDevDependencies: Record<string, string[]> = {
-    web: dependencies.webDev,
-    backend: dependencies.backendDev,
-    ai: dependencies.aiDev,
-  };
-
-  for (const app of apps) {
-    await mergePackageJson(
-      path.join(targetDir, "apps", app),
-      app as "web" | "backend" | "ai",
-      appDependencies,
-      appDevDependencies,
+  if (apps.includes("web")) {
+    await fs.writeFile(
+      path.join(targetDir, "apps", "web", "package.json"),
+      JSON.stringify(
+        getWebPackageJson(dependencies.web, dependencies.webDev),
+        null,
+        2,
+      ),
     );
   }
+
+  if (apps.includes("backend")) {
+    await fs.writeFile(
+      path.join(targetDir, "apps", "backend", "package.json"),
+      JSON.stringify(
+        getBackendPackageJson(dependencies.backend, dependencies.backendDev),
+        null,
+        2,
+      ),
+    );
+  }
+
+  await fs.writeFile(
+    path.join(targetDir, "packages", "ui", "package.json"),
+    JSON.stringify(getUiPackageJson(), null, 2),
+  );
+
+  await fs.ensureDir(path.join(targetDir, "packages", "shared", "types"));
+  await fs.writeFile(
+    path.join(targetDir, "packages", "shared", "types", "index.ts"),
+    `// Shared types directory
+export {};
+`,
+  );
 
   await mergeTurboJson(targetDir, apps);
   await mergeEnvExample(targetDir, envVars);
@@ -184,25 +313,25 @@ export async function generate(options: GenerateOptions): Promise<void> {
     JSON.stringify(
       {
         name: options.name,
-        version: "0.0.1",
+        version: "0.1.0",
         private: true,
         scripts: {
           build: "turbo run build",
-          dev: "turbo run dev",
+          dev: "turbo run dev --filter=!backend",
+          "dev:all": "turbo run dev",
           lint: "turbo run lint",
           typecheck: "turbo run typecheck",
         },
         devDependencies: {
-          "@workspace/eslint-config": "workspace:*",
-          "@workspace/typescript-config": "workspace:*",
           prettier: "^3.7.4",
           tailwindcss: "^4.1.11",
           turbo: "^2.7.3",
           typescript: "^5.7.3",
+          "@types/node": "^22.0.0",
         },
         packageManager: "pnpm@10.4.1",
         engines: {
-          node: ">=20",
+          node: ">=22",
         },
       },
       null,
@@ -219,6 +348,28 @@ export async function generate(options: GenerateOptions): Promise<void> {
   );
 
   await fs.writeFile(
+    path.join(targetDir, ".npmrc"),
+    `engine-strict=true
+auto-install-peers=true
+`,
+  );
+
+  await fs.writeFile(
+    path.join(targetDir, ".env.example"),
+    `# Required
+DATABASE_URL=file:./sqlite.db
+BETTER_AUTH_SECRET=your_auth_secret_here
+
+# Optional - Google OAuth
+# GOOGLE_CLIENT_ID=
+# GOOGLE_CLIENT_SECRET=
+
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:1111
+`,
+  );
+
+  await fs.writeFile(
     path.join(targetDir, "README.md"),
     `# ${options.name}
 
@@ -228,36 +379,49 @@ Generated with Apsara DevKit.
 
 ${features.map((f) => `- ${f}`).join("\n")}
 
-## Getting Started
+## Quick Start
 
 \`\`\`bash
 # Install dependencies
-${options.install !== false ? "pnpm install" : "pnpm install --no-frozen-lockfile"}
+pnpm install
 
-# Start development server
+# Start development server (web only)
 pnpm dev
+
+# Start all apps including backend
+pnpm dev:all
 \`\`\`
 
-## Available Commands
+> **Important:** Use \`pnpm\` as the package manager.
 
-\`\`\`bash
-pnpm build      # Build all apps
-pnpm dev        # Start development servers
-pnpm lint       # Lint all apps
-pnpm typecheck  # Type check all apps
-\`\`\`
+## Apps
+
+| App | Port | Description |
+|-----|------|-------------|
+| web | 1111 | Next.js frontend |
+| backend | 2222 | Hono API server |
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| \`pnpm dev\` | Start web app on port 1111 |
+| \`pnpm dev:all\` | Start all apps |
+| \`pnpm build\` | Build all apps |
+| \`pnpm lint\` | Lint all apps |
+| \`pnpm typecheck\` | Type check all apps |
 
 ## Environment Variables
 
-Copy \`.env.example\` to \`.env\` and fill in the values:
+Copy \`.env.example\` to \`.env\` and configure:
 
 \`\`\`bash
 cp .env.example .env
 \`\`\`
 
-## Documentation
+## Learn More
 
-See the [Apsara DevKit documentation](https://github.com/your-org/apsara-devkit) for more information.
+See [Apsara DevKit](https://github.com/your-org/apsara-devkit) for documentation.
 `,
   );
 
@@ -305,11 +469,9 @@ ${bold("Project structure:")}
 
   ${options.name}/
   ├── apps/
-  │   ${apps.map((a) => a + "/").join("\n  │   ")}
+  │   ${apps.join("/\n  │   ")}/
   ├── packages/
-  │   ├── ui/
-  │   └── shared/
-  └── features/
-      ${features.map((f) => f + "/").join("\n      ")}
+  │   └── ui/
+  └── ...
 `);
 }
